@@ -62,11 +62,8 @@ graphs/fast_kuhn.cpp	Fast Kuhn
 graphs/find_cycle_3_4.cpp	Find Cycle of size 3 and 4
 graphs/floyd_warshall.cpp	Floyd Warshall
 graphs/hungarian_navarro.cpp	Hungarian Navarro
-graphs/kahn.cpp	Toposort
 graphs/kosaraju.cpp	Strongly Connected Components
 graphs/kruskal.cpp	MST (Kruskal)
-graphs/kuhn.cpp	Max Bipartite Cardinality Matching (Kuhn)
-graphs/lca.cpp	Lowest Common Ancestor
 graphs/max_weight_lca.cpp	Max Weight on Path
 graphs/min_cost_max_flow.cpp	Min Cost Max Flow
 graphs/spfa.cpp	Shortest Path (SPFA)
@@ -83,7 +80,6 @@ strings/kmp_automaton.cpp	Knuth-Morris-Pratt (Automaton)
 strings/kmp.cpp	Knuth-Morris-Pratt
 strings/manacher.cpp	Manacher
 strings/manacher_2.cpp	Manacher 2
-strings/rabin_karp.cpp	Rabin-Karp
 strings/recursive_string_matching.cpp	Recursive-String Matching
 strings/string_hashing.cpp	String Hashing
 strings/string_multihashing.cpp	String Multihashing
@@ -101,8 +97,6 @@ math/extended_euclid.cpp	Extended Euclidean and Chinese Remainder
 math/fft_tourist.cpp	Fast Fourier Transform(Tourist)
 math/fft.cpp	Fast Fourier Transform
 math/fwht.cpp	Fast Walsh-Hadamard Transform
-math/gauss_elim_ext.cpp	Gaussian Elimination (extended inverse)
-math/gauss_elim_prime.cpp	Gaussian Elimination (modulo prime)
 math/gauss_elim_xor.cpp	Gaussian Elimination (xor)
 math/gauss_elim.cpp	Gaussian Elimination (double)
 math/gss.cpp	Golden Section Search (Ternary Search)
@@ -130,11 +124,8 @@ geometry/lines.cpp	Lines
 geometry/minkowski_sum.cpp	Minkowski Sum
 geometry/nearest_neighbour.cpp	Nearest Neighbour
 geometry/polygons.cpp	Polygons
-geometry/stanford_delaunay.cpp	Stanford Delaunay
 geometry/ternary_search.cpp	Ternary Search
 geometry/delaunay.cpp	Delaunay Triangulation
-geometry/voronoi.cpp	Voronoi Diagram
-geometry/delaunay-emaxx.cpp	Delaunay Triangulation (emaxx)
 geometry/closest_pair_3d.cpp	Closest Pair of Points 3D
 
 [Miscellaneous]
