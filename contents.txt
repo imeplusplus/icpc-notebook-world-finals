@@ -10,11 +10,9 @@ vimrc	vimrc
 
 [Data Structures]
 data-structures/bit_binary_search.cpp	Bit Binary Search
-data-structures/bit_range.cpp	Bit Range
 data-structures/bit.cpp	Bit
 data-structures/bit2d.cpp	Bit 2D
 data-structures/centroid_decomposition.cpp	Centroid Decomposition
-data-structures/color_update.cpp	Color Update
 data-structures/hld_exx.cpp	Heavy-Light Decomposition (new)
 data-structures/hld.cpp	Heavy-Light Decomposition
 data-structures/hld-lamarca.cpp	Heavy-Light Decomposition (Lamarca)
@@ -29,7 +27,6 @@ data-structures/seg_tree_mod.cpp	Mod Segment Tree
 data-structures/seg_tree_persistent_naum.cpp	Persistent Segment Tree (Naum)
 data-structures/seg_tree_persistent.cpp	Persistent Segment Tree
 data-structures/seg_tree_point_update_struct.cpp	Struct Segment Tree
-data-structures/seg_tree.cpp	Segment Tree
 data-structures/seg_tree2d.cpp	Segment Tree 2D
 data-structures/set_of_intervals.cpp	Set Of Intervals
 data-structures/sparse.cpp	Sparse Table
@@ -150,7 +147,6 @@ misc/bitset.cpp	Bitset
 misc/builtin.cpp	builtin
 misc/date.cpp	Date
 misc/ita_paren2polish.cpp	Parentesis to Poslish (ITA)
-misc/merge_sort.cpp	Merge Sort (Inversion Count)
 misc/modular_int.cpp	Modular Int (Struct)
 misc/parallel_bin_search.cpp	Parallel Binary Search
 misc/prime_numbers.txt	prime numbers
