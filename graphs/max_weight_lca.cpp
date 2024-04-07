@@ -1,10 +1,9 @@
 // Using LCA to find max edge weight between (u, v)
-
 const int N = 1e5+5;  // Max number of vertices
 const int K = 20;     // Each 1e3 requires ~ 10 K
 const int M = K+5;
 int n;                // Number of vertices
-vector <pii> adj[N];
+vector <pair<int, int>> adj[N];
 int vis[N], h[N], anc[N][M], mx[N][M];
 
 void dfs (int u) {
@@ -45,6 +44,6 @@ int mxedge (int u, int v) {
 		ans = max(ans, mx[v][j]);
 		u = anc[u][j];
 		v = anc[v][j];
-	}
-	return max({ans, mx[u][0], mx[v][0]});
+	} //LCA: anc[0][u]
+	return max({ans, mx[u][0], mx[v][0]}); 
 }
