@@ -10,7 +10,7 @@ const int N = 1e6 + 5;
 
 const int MOD = 1e9+9;
 ull h[N], p[N];
-ull pr = 313;
+ull pr = 313; //177771
 
 int cnt;
 
