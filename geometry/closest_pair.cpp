@@ -48,6 +48,23 @@ void closest_pair(int l, int r) {
 			stripe[stripe_sz++] = pts[i];
 		}
 	}
+
+	//3D (sort points by Z before starting)(cfloor in math/basics)
+	//map opposite side
+	map<pll, vector<int>> f;
+	for(int i = m; i < r; i++){
+		f[{cfloor(pts[i].x, min_dist), cfloor(pts[i].y, min_dist)}].push_back(i);
+	}
+	//find
+	for(int i = l; i < m; i++){
+		if((midz - pts[i].z) * (midz - pts[i].z) >= min_dist) continue;
+
+		pll cur = {cfloor(pts[i].x, min_dist), cfloor(pts[i].y, min_dist)}; 
+		for(int dx = -1; dx <= 1; dx++)
+			for(int dy = -1; dy <= 1; dy++)
+				for(auto p : f[{cur.st + dx, cur.nd + dy}])
+					min_dist = min(min_dist, pts[i].dist2(pts[p]));
+	}
 }
 
 int main(){

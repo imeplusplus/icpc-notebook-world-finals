@@ -22,3 +22,11 @@ ll fexp(ll a, ll b, ll m = MOD) {
 	for (a %= m; b; b>>=1, a=(a*a)%m) if (b&1) r=(r*a)%m;
 	return r;
 }
+
+//cfloor
+ll cfloor(ll a, ll b) {
+  ll c = abs(a);
+  ll d = abs(b);
+  if (a * b > 0) return c/d;
+  return -(c + d - 1)/d;
+}

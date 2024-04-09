@@ -111,7 +111,6 @@ geometry/nearest_neighbour.cpp	Nearest Neighbour
 geometry/polygons.cpp	Polygons
 geometry/ternary_search.cpp	Ternary Search
 geometry/delaunay.cpp	Delaunay Triangulation
-geometry/closest_pair_3d.cpp	Closest Pair of Points 3D
 
 [Miscellaneous]
 misc/bitset.cpp	Bitset
