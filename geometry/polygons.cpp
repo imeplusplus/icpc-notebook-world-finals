@@ -212,19 +212,29 @@ bool is_simple_polygon(const vector<point> &pts){
 	return true;
 }
 
-//code copied from https://github.com/tfg50/Competitive-Programming/blob/master/Biblioteca/Math/2D%20Geometry/ConvexHull.cpp
-int maximize_scalar_product(vector<point> &hull, point vec) {
-	// this code assumes that there are no 3 colinear points
+// this code assumes that there are no 3 colinear points
+int maximize_scalar_product(vector<point> &hull, point vec /*, int dir_flag*/) {
+	/*
+		For Minimize change: >= becomes <= and > becomes <
+		For finding tangents, use same code passing direction flag
+		dir_flag = -1 for right tangent
+		dir_flag =  1 for left tangent
+		>= or > becomes: == dir_flag
+		< or <= becomes != dir_flag
+		commentaries below for better clarification
+	*/
 	int ans = 0;
 	int n = hull.size();
 	if(n < 20) {
 		for(int i = 0; i < n; i++) {
 			if(hull[i] * vec > hull[ans] * vec) {
+				//hull[ans].dir(vec, hull[i]) == dir_flag
 				ans = i;
 			}
 		}
 	} else {
 		if(hull[1] * vec > hull[ans] * vec) {
+			//hull[ans].dir(vec, hull[i]) == dir_flag
 			ans = 1;
 		}
 		for(int rep = 0; rep < 2; rep++) {
@@ -232,53 +242,19 @@ int maximize_scalar_product(vector<point> &hull, point vec) {
 			while(l != r) {
 				int mid = (l + r + 1) / 2;
 				bool flag = hull[mid] * vec >= hull[mid-1] * vec;
+				//(hull[ans].dir(vec, hull[l]) == dir_flag
 				if(rep == 0) { flag = flag && hull[mid] * vec >= hull[0] * vec; }
+				//(hull[ans].dir(vec, hull[l]) == dir_flag
 				else { flag = flag || hull[mid-1] * vec < hull[0] * vec; }
+				//(hull[ans].dir(vec, hull[l]) != dir_flag
 				if(flag) {
 					l = mid;
 				} else {
 					r = mid - 1;
 				}
 			}
-			if(hull[ans] * vec < hull[l] * vec) {
-				ans = l;
-			}
-		}
-	}
-	return ans;
-}
-
-//find tangents related to a point outside the polygon, essentially the same for maximizing scalar product
-int tangent(vector<point> &hull, point vec, int dir_flag) {
-	// this code assumes that there are no 3 colinear points
-	// dir_flag = -1 for right tangent
-	// dir_flag =  1 for left taangent
-	int ans = 0;
-	int n = hull.size();
-	if(n < 20) {
-		for(int i = 0; i < n; i++) {
-			if(hull[ans].dir(vec, hull[i]) == dir_flag) {
-				ans = i;
-			}
-		}
-	} else {
-		if(hull[ans].dir(vec, hull[1]) == dir_flag) {
-			ans = 1;
-		}
-		for(int rep = 0; rep < 2; rep++) {
-			int l = 2, r = n - 1;
-			while(l != r) {
-				int mid = (l + r + 1) / 2;
-				bool flag = hull[mid - 1].dir(vec, hull[mid]) == dir_flag;
-				if(rep == 0) { flag = flag && (hull[0].dir(vec, hull[mid]) == dir_flag); }
-				else { flag = flag || (hull[0].dir(vec, hull[mid - 1]) != dir_flag); }
-				if(flag) {
-					l = mid;
-				} else {
-					r = mid - 1;
-				}
-			}
-			if(hull[ans].dir(vec, hull[l]) == dir_flag) {
+			if(hull[l] * vec > hull[ans] * vec) {
+				//(hull[ans].dir(vec, hull[l]) == dir_flag
 				ans = l;
 			}
 		}
