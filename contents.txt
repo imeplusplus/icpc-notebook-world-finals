@@ -19,12 +19,9 @@ data-structures/mergesort_tree.cpp	Merge Sort Tree
 data-structures/min_queue.cpp	Minimum Queue
 data-structures/ordered_set.cpp	Ordered Set
 data-structures/seg_tree_dynamic_lazy.cpp	Dynamic Segment Tree (Lazy Update)
-data-structures/seg_tree_dynamic.cpp	Dynamic Segment Tree
 data-structures/seg_tree_iterative.cpp	Iterative Segment Tree
 data-structures/seg_tree_mod.cpp	Mod Segment Tree
-data-structures/seg_tree_persistent_naum.cpp	Persistent Segment Tree (Naum)
 data-structures/seg_tree_persistent.cpp	Persistent Segment Tree
-data-structures/seg_tree_point_update_struct.cpp	Struct Segment Tree
 data-structures/seg_tree2d.cpp	Segment Tree 2D
 data-structures/set_of_intervals.cpp	Set Of Intervals
 data-structures/sparse.cpp	Sparse Table
@@ -56,7 +53,6 @@ graphs/find_cycle_3_4.cpp	Find Cycle of size 3 and 4
 graphs/floyd_warshall.cpp	Floyd Warshall
 graphs/hungarian_navarro.cpp	Hungarian Navarro
 graphs/kosaraju.cpp	Strongly Connected Components
-graphs/kruskal.cpp	MST (Kruskal)
 graphs/max_weight_lca.cpp	Max Weight on Path (LCA)
 graphs/min_cost_max_flow.cpp	Min Cost Max Flow
 graphs/spfa.cpp	Shortest Path (SPFA)
