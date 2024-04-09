@@ -13,8 +13,6 @@ data-structures/bit_binary_search.cpp	Bit Binary Search
 data-structures/bit.cpp	Bit
 data-structures/bit2d.cpp	Bit 2D
 data-structures/centroid_decomposition.cpp	Centroid Decomposition
-data-structures/hld_exx.cpp	Heavy-Light Decomposition (new)
-data-structures/hld.cpp	Heavy-Light Decomposition
 data-structures/hld-lamarca.cpp	Heavy-Light Decomposition (Lamarca)
 data-structures/ita_lichao.cpp	Lichao Tree (ITA)
 data-structures/mergesort_tree.cpp	Merge Sort Tree
@@ -31,17 +29,13 @@ data-structures/seg_tree2d.cpp	Segment Tree 2D
 data-structures/set_of_intervals.cpp	Set Of Intervals
 data-structures/sparse.cpp	Sparse Table
 data-structures/sparse2d.cpp	Sparse Table 2D
-data-structures/splay.cpp	Splay Tree
 data-structures/stanford_kdtree.cpp	KD Tree (Stanford)
 data-structures/treap.cpp	Treap
 data-structures/trie.cpp	Trie
 data-structures/union_find.cpp	Union Find
-data-structures/union_find_partial_persistent.cpp	Union Find (Partial Persistent)
-data-structures/union_find_rollback.cpp	Union Find (Rollback)
 
 [Dynamic Programming]
 dynamic-programming/convex_hull_trick_emaxx.cpp	Convex Hull Trick (emaxx)
-dynamic-programming/convex_hull_trick.cpp	Convex Hull Trick
 dynamic-programming/divide_and_conquer_optimization.cpp	Divide and Conquer Optimization
 dynamic-programming/knuth_optimization.cpp	Knuth Optimization
 dynamic-programming/lis.cpp	Longest Increasing Subsequence
@@ -50,7 +44,6 @@ dynamic-programming/steiner_tree.cpp	Steiner tree
 
 [Graphs]
 graphs/2_sat_kosaraju.cpp	2-SAT Kosaraju
-graphs/2_sat_tarjan.cpp	2-SAT Tarjan
 graphs/bellman_ford.cpp	Shortest Path (Bellman-Ford)
 graphs/block_cut.cpp	Block Cut
 graphs/bridges_and_articulations.cpp	Articulation points and bridges
@@ -64,13 +57,11 @@ graphs/floyd_warshall.cpp	Floyd Warshall
 graphs/hungarian_navarro.cpp	Hungarian Navarro
 graphs/kosaraju.cpp	Strongly Connected Components
 graphs/kruskal.cpp	MST (Kruskal)
-graphs/max_weight_lca.cpp	Max Weight on Path
+graphs/max_weight_lca.cpp	Max Weight on Path (LCA)
 graphs/min_cost_max_flow.cpp	Min Cost Max Flow
 graphs/spfa.cpp	Shortest Path (SPFA)
 graphs/small_to_large.cpp	Small to Large
 graphs/stanford_stoer_wagner.cpp	Stoer Wagner (Stanford)
-graphs/tarjan.cpp	Tarjan
-graphs/zero_one_bfs.cpp	Zero One BFS
 
 [Strings]
 strings/aho_corasick.cpp	Aho-Corasick
@@ -79,7 +70,6 @@ strings/booths_algorithm.cpp	Booths Algorithm
 strings/kmp_automaton.cpp	Knuth-Morris-Pratt (Automaton)
 strings/kmp.cpp	Knuth-Morris-Pratt
 strings/manacher.cpp	Manacher
-strings/manacher_2.cpp	Manacher 2
 strings/recursive_string_matching.cpp	Recursive-String Matching
 strings/string_hashing.cpp	String Hashing
 strings/string_multihashing.cpp	String Multihashing
@@ -106,7 +96,6 @@ math/mobius_inversion.cpp	Mobius Inversion
 math/mobius.cpp	Mobius Function
 math/ntt.cpp	Number Theoretic Transform
 math/pollard_rho.cpp	Pollard-Rho
-math/pollard_rho_optimization.cpp	Pollard-Rho Optimization
 math/prime_factors.cpp	Prime Factors
 math/primitive_root.cpp	Primitive Root
 math/sieve.cpp	Sieve of Eratosthenes
