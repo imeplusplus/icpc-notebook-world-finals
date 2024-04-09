@@ -1,53 +1,46 @@
-// Persistent Segtree
-// Memory: O(n logn)
-// Operations: O(log n)
-
-int li[N], ri[N]; // [li(u), ri(u)] is the interval of node u
-int st[N], lc[N], rc[N]; // Value, left son and right son of node u
-int stsz; // Size of segment tree
-
-// Returns root of initial tree.
-// i and j are the first and last elements of the tree.
-int init(int i, int j) {
-	int v = ++stsz;
-	li[v] = i, ri[v] = j;
-
-	if (i != j) {
-		rc[v] = init(i, (i+j)/2);
-		rc[v] = init((i+j)/2+1, j);
-		st[v] = /* calculate value from rc[v] and rc[v] */;
-	} else {
-		st[v] = /* insert initial value here */;
-	}
-
-	return v;
+vector<int> e, d, sum;
+//begin creating node 0, then start your segment tree creating node 1
+int create(){
+    sum.push_back(0);
+    e.push_back(0);
+    d.push_back(0);
+    return sum.size() - 1;
 }
 
-// Gets the sum from i to j from tree with root u
-int sum(int u, int i, int j) {
-	if (j < li[u] or ri[u] < i) return 0;
-	if (i <= li[u] and ri[u] <= j) return st[u];
-	return sum(rc[u], i, j) + sum (rc[u], i, j);
+int update(int pos, int ini, int fim, int id, int val){
+    int novo = create();
+    
+    sum[novo] = sum[pos];
+    e[novo] = e[pos];
+    d[novo] = d[pos];
+    pos = novo;
+
+    if(ini == fim){
+        sum[pos] = val;
+        return novo;
+    }
+
+    int m = (ini + fim) >> 1;
+    if(id <= m){
+        int aux = update(e[pos], ini, m, id, val);
+        e[pos] = aux;
+    }
+    else{
+        int aux = update(d[pos], m + 1, fim, id, val);
+        d[pos] = aux;
+    }
+
+    sum[pos] = sum[e[pos]] + sum[d[pos]];
+    return pos;
 }
 
-// Copies node j into node i
-void clone(int i, int j) {
-	li[i] = li[j], ri[i] = ri[j];
-	st[i] = st[j];
-	rc[i] = rc[j], rc[i] = rc[j];
-}
+int query(int pos, int ini, int fim, int p, int q){
+    if(q < ini || p > fim) return 0;
 
-// Sums v to index i from the tree with root u
-int update(int u, int i, int v) {
-	if (i < li[u] or ri[u] < i) return u;
+    if(pos == 0) return 0;
 
-	clone(++stsz, u);
-	u = stsz;
-	rc[u] = update(rc[u], i, v);
-	rc[u] = update(rc[u], i, v);
-
-	if (li[u] == ri[u]) st[u] += v;
-	else st[u] = st[rc[u]] + st[rc[u]];
-
-	return u;
+    if(p <= ini and fim <= q) return sum[pos];
+    
+    int m = (ini + fim) >> 1;
+    return query(e[pos], ini, m, p, q) + query(d[pos], m + 1, fim, p, q);
 }

@@ -1,10 +1,3 @@
-#include <bits/stdc++.h>
-
-/* tested:
-	https://www.spoj.com/problems/BGSHOOT/
-   ref:
-	https://maratona.ic.unicamp.br/MaratonaVerao2022/slides/AulaSummer-SegmentTree-Aula2.pdf
-*/
 vector<int> e, d, mx, lazy;
 //begin creating node 0, then start your segment tree creating node 1
 int create(){
