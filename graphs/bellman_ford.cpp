@@ -1,12 +1,4 @@
-/**********************************************************************************
-* BELLMAN-FORD ALGORITHM (SHORTEST PATH TO A VERTEX - WITH NEGATIVE COST)         *
-* Time complexity: O(VE)                                                          *
-* Usage: dist[node]                                                               *
-* Notation: m:           number of edges                                          *
-*           n:           number of vertices                                       *
-*           (a, b, w):   edge between a and b with weight w                       *
-*           s:           starting node                                            *
-**********************************************************************************/
+//Time complexity: O(VE)                                                          
 const int N = 1e4+10; // Maximum number of nodes
 vector<int> adj[N], adjw[N];
 int dist[N], v, w;

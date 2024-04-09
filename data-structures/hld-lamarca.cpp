@@ -107,38 +107,3 @@ template<int N, bool IN_EDGES> struct HLD {
 		return res; 
 	}
 };
-
-//solves https://www.hackerrank.com/challenges/subtrees-and-paths/problem
-//other problems here: https://blog.anudeep2011.com/heavy-light-decomposition/
-
-const int N = 1e5+10;
-char str[100];
-int main(){
-	HLD<N,false> hld;
-	int n;
-	cin >> n;
-	
-	fr(i,n-1){
-		int u, v;
-		scanf("%d%d", &u, &v);
-		u--,v--;
-		hld.ae(u,v);
-	}
-	hld.init();
-	int q;
-	scanf("%d", &q);
-	fr(qq,q){
-		scanf("%s", str);
-		if(str[0]=='a'){
-			int t, val;
-			scanf("%d%d", &t, &val);
-			t--;
-			hld.modifySubtree(t,val);
-		} else{
-			int u, v;
-			scanf("%d%d", &u, &v);
-			u--,v--;
-			printf("%lld\n", hld.queryPath(u,v));
-		}
-	}
-}
