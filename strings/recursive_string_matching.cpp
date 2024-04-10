@@ -66,4 +66,3 @@ int main() {
 	int answer = K[0][k];
 	//...
 }
-

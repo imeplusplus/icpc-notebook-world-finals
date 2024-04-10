@@ -1,13 +1,10 @@
-/**********************************************************************************
-* DIVIDE AND CONQUER OPTIMIZATION ( dp[i][k] = min j<k {dp[j][k-1] + C(j,i)} )    *
-* Description: searches for bounds to optimal point using the monotocity condition*
-* Condition: L[i][k] <= L[i+1][k]                                                 * 
-* Time Complexity: O(K*N^2) becomes O(K*N*logN)                                   *                
-* Notation: dp[i][k]: optimal solution using k positions, until position i        *
-*           L[i][k]: optimal point, smallest j which minimizes dp[i][k]           *
-*           C(i,j): cost for splitting range [j,i] to j and i                     *
-**********************************************************************************/
-
+// DIVIDE AND CONQUER OPTIMIZATION ( dp[i][k] = min j<k {dp[j][k-1] + C(j,i)} )    
+// Description: searches for bounds to optimal point using the monotocity condition
+// Condition: L[i][k] <= L[i+1][k]                                                  
+// Time Complexity: O(KN^2) becomes O(KNlogN)                                                   
+// Notation: dp[i][k]: optimal solution using k positions, until position i        
+// 					L[i][k]: optimal point, smallest j which minimizes dp[i][k]           
+// 					C(i,j): cost for splitting range [j,i] to j and i                     
 const int N = 1e3+5;
 
 ll dp[N][N];
@@ -56,4 +53,3 @@ ll solve(){
 		}
 	*/
 }
-

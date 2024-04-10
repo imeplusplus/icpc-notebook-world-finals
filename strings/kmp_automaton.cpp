@@ -21,4 +21,3 @@ void kmp(string &s, string &p) {
 		if(j == p.size()) cnt++; //match i - j + 1
 	}
 }
-

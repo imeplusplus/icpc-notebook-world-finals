@@ -26,4 +26,3 @@ for(int i = m-1; i >= 0; i--) { //solve triangular system
 		A[i][m] -= A[i][j]*X[j];
 	X[i]=A[i][m]/A[i][i];
 }
-

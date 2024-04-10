@@ -1,4 +1,3 @@
-#include "basics.cpp"
 //DIVIDE AND CONQUER METHOD
 //Warning: include variable id into the struct point
 

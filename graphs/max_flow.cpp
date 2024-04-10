@@ -87,23 +87,21 @@ private:
 	}
 };
 
-/***********************************************************************************************
-* FLOW WITH DEMANDS                                                                            *
-*                                                                                              *
-* 1 - Finding an arbitrary flow                                                                *
-* Assume a network with [L, R] on edges (some may have L = 0), let's call it old network.      *
-* Create a New Source and New Sink (this will be the src and snk for Dinic).                   *
-* Modelling Network:                                                                           *
-* 1) Every edge from the old network will have cost R - L                                      *
-* 2) Add an edge from New Source to every vertex v with cost:                                  *
-*    Sum(L) for every (u, v). (sum all L that LEAVES v)                                        *
-* 3) Add an edge from every vertex v to New Sink with cost:                                    *
-*    Sum(L) for every (v, w). (sum all L that ARRIVES v)                                       *
-* 4) Add an edge from Old Source to Old Sink with cost INF (circulation problem)               *
-* The Network will be valid if and only if the flow saturates the network (max flow == sum(L)) *
-*                                                                                              *
-* 2 - Finding Min Flow                                                                         *
-* To find min flow that satisfies just do a binary search in the (Old Sink -> Old Source) edge *
-* The cost of this edge represents all the flow from old network                               *
-* Min flow = Sum(L) that arrives in Old Sink + flow that leaves (Old Sink -> Old Source)       *
-************************************************************************************************/
+// FLOW WITH DEMANDS                                                                            
+																																														
+// 1 - Finding an arbitrary flow                                                                
+// Assume a network with [L, R] on edges (some may have L = 0), let's call it old network.      
+// Create a New Source and New Sink (this will be the src and snk for Dinic).                   
+// Modelling Network:                                                                           
+// 1) Every edge from the old network will have cost R - L                                      
+// 2) Add an edge from New Source to every vertex v with cost:                                  
+// 	Sum(L) for every (u, v). (sum all L that LEAVES v)                                        
+// 3) Add an edge from every vertex v to New Sink with cost:                                    
+// 	Sum(L) for every (v, w). (sum all L that ARRIVES v)                                       
+// 4) Add an edge from Old Source to Old Sink with cost INF (circulation problem)               
+// The Network will be valid if and only if the flow saturates the network (max flow == sum(L)) 
+																																														
+// 2 - Finding Min Flow                                                                         
+// To find min flow that satisfies just do a binary search in the (Old Sink -> Old Source) edge 
+// The cost of this edge represents all the flow from old network                               
+// Min flow = Sum(L) that arrives in Old Sink + flow that leaves (Old Sink -> Old Source)

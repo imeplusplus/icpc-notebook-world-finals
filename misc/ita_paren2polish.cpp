@@ -1,11 +1,4 @@
-#include <cstdio>
-#include <map>
-#include <stack>
-using namespace std;
-
-/*
- * Parenthetic to polish expression conversion
- */
+//Parenthetic to polish expression conversion
 
 inline bool isOp(char c) {
 	return c=='+' || c=='-' || c=='*' || c=='/' || c=='^';

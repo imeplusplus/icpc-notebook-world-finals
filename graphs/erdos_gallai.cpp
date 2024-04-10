@@ -17,4 +17,3 @@ bool gallai(vector<int> v) {
 	}
 	return 1;
 }
-

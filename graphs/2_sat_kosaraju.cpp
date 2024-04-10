@@ -1,5 +1,4 @@
-// Time complexity: O(V+E)                                                                      *
-
+// Time complexity: O(V+E)
 int n, vis[2*N], ord[2*N], ordn, cnt, cmp[2*N], val[N];
 vector<int> adj[2*N], adjt[2*N];
 

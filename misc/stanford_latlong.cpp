@@ -1,13 +1,5 @@
-/*
-Converts from rectangular coordinates to latitude/longitude and vice
-versa. Uses degrees (not radians).
-*/
-
-#include <iostream>
-#include <cmath>
-
-using namespace std;
-
+// Converts from rectangular coordinates to latitude/longitude and vice
+// versa. Uses degrees (not radians).
 struct ll
 {
 	double r, lat, lon;

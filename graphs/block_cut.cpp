@@ -1,8 +1,4 @@
 // Tarjan for Block Cut Tree (Node Biconnected Componentes) - O(n + m)
-#define pb push_back
-#include <bits/stdc++.h>
-using namespace std;
-
 const int N = 1e5+5;
 
 // Regular Tarjan stuff
@@ -16,18 +12,18 @@ vector<int> blc[N]; // List of nodes from block
 void dfs(int u, int p) {
 	num[u] = low[u] = ++cnt;
 	ch[u] = adj[u].size();
-	st.pb(u);
+	st.push_back(u);
 
-	if (adj[u].size() == 1) blc[++bn].pb(u);
+	if (adj[u].size() == 1) blc[++bn].push_back(u);
 
 	for(int v : adj[u]) {
 		if (!num[v]) {
 			dfs(v, u), low[u] = min(low[u], low[v]);
 			if (low[v] == num[u]) {
 				if (p != -1 or ch[u] > 1) art[u] = 1;
-				blc[++bn].pb(u);
+				blc[++bn].push_back(u);
 				while(blc[bn].back() != v)
-					blc[bn].pb(st.back()), st.pop_back();
+					blc[bn].push_back(st.back()), st.pop_back();
 			}
 		}
 		else if (v != p) low[u] = min(low[u], num[v]), ch[v]--;
@@ -45,7 +41,7 @@ void build_tree() {
 		if (lb[u] == lb[v] or blc[lb[u]][0] == v) /* edge u-v belongs to block lb[u] */;
 		else { /* edge u-v belongs to block cut tree */;
 			int x = (art[u] ? u + n : lb[u]), y = (art[v] ? v + n : lb[v]);
-			bct[x].pb(y), bct[y].pb(x);
+			bct[x].push_back(y), bct[y].push_back(x);
 		}
 	}
 }
@@ -55,4 +51,3 @@ void tarjan() {
 	for(int b=1; b<=bn; ++b) for(int u : blc[b]) lb[u] = b;
 	build_tree();
 }
-

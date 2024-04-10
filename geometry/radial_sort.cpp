@@ -1,6 +1,4 @@
-#include "basics.cpp"
 point origin;
-
 /*
 	below < above
 	order: [pi, 2 * pi)

@@ -1,12 +1,9 @@
-/**********************************************************************************
-* DSU (DISJOINT SET UNION / UNION-FIND)                                           *
-* Time complexity:  Unite - O(alpha n)                                            *
-*                   Find - O(alpha n)                                             *
-* Usage: find(node), unite(node1, node2), sz[find(node)]                          *
-* Notation: par: vector of parents                                                *
-*           sz:  vector of subsets sizes, i.e. size of the subset a node is in    *
-**********************************************************************************/
-
+// DSU (DISJOINT SET UNION / UNION-FIND)                                           
+// Time complexity:  Unite - O(alpha n)                                            
+// 									Find - O(alpha n)                                             
+// Usage: find(node), unite(node1, node2), sz[find(node)]                          
+// Notation: par: vector of parents                                                
+// 					sz:  vector of subsets sizes, i.e. size of the subset a node is in    
 int par[N], sz[N], his[N];
 stack <pii> sp, ss;
 
