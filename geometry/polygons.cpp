@@ -41,7 +41,7 @@ void convex_hull(vector<point> &pts) {
 	#endif
 }
 
-//avoid using long double for comparisons, change type and remove division by 2
+//avoid using long double for comparisons, change type and add division by 2
 type compute_signed_area(const vector<point> &p) {
 	type area = 0;
 	for(int i = 0; i < p.size(); i++) {
@@ -51,65 +51,14 @@ type compute_signed_area(const vector<point> &p) {
 	return area;
 }
 
-ld compute_area(const vector<point> &p) {
-	return fabs(compute_signed_area(p) / 2.0);
-}
-
-ld compute_perimeter(vector<point> &p) {
-	ld per = 0;
-	for(int i = 0; i < p.size(); i++) {
-		int j = (i+1) % p.size();
-		per += p[i].dist(p[j]);
-	}
-	return per;
-}
-
-//not tested
-// TODO: test this code. This code has not been tested, please do it before proper use.
-// http://codeforces.com/problemset/problem/975/E is a good problem for testing.
 point compute_centroid(vector<point> &p) {
 	point c(0,0);
-	ld scale = 6.0 * compute_signed_area(p);
+	ld scale = 3.0 * compute_signed_area(p);
 	for (int i = 0; i < p.size(); i++){
-		int j = (i+1) % p.size();
-		c = c + (p[i]+p[j])*(p[i].x*p[j].y - p[j].x*p[i].y);
+			int j = (i+1) % p.size();
+			c = c + (p[i]+p[j])*(p[i].x*p[j].y - p[j].x*p[i].y);
 	}
 	return c / scale;
-
-}
-
-// TODO: test this code. This code has not been tested, please do it before proper use.
-// http://codeforces.com/problemset/problem/975/E is a good problem for testing.
-point centroid(vector<point> &v) {
-  int n = v.size();
-  type da = 0;
-  point m, c;
-
-  for(point p : v) m = m + p;
-  m = m / n;
-
-  for(int i=0; i<n; ++i) {
-	point p = v[i] - m, q = v[(i+1)%n] - m;
-	type x = p % q;
-	c = c + (p + q) * x;
-	da += x;
-  }
-
-  return c / (3 * da);
-}
-
-//O(n^2)
-bool is_simple(const vector<point> &p) {
-	for (int i = 0; i < p.size(); i++) {
-		for (int k = i+1; k < p.size(); k++) {
-			int j = (i+1) % p.size();
-			int l = (k+1) % p.size();
-			if (i == l || j == k) continue;
-			if (segment_segment_intersect(p[i], p[j], p[k], p[l])) 
-				return false;
-		}
-	}
-	return true;
 }
 
 bool point_in_triangle(point a, point b, point c, point cur){
@@ -145,13 +94,6 @@ bool point_in_convex_polygon(vector<point> &hull, point cur){
 		else r = mid;
 	}
 	return point_in_triangle(hull[l], hull[l + 1], hull[0], cur);
-}
-
-// determine if point is on the boundary of a polygon (O(N))
-bool point_on_polygon(vector<point> &p, point q) {
-for (int i = 0; i < p.size(); i++)
-	if (q.dist2(project_point_segment(p[i], p[(i+1)%p.size()], q)) < EPS) return true;
-	return false;
 }
 
 //Shamos - Hoey for test polygon simple in O(nlog(n))

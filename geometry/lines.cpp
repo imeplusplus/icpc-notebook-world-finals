@@ -1,8 +1,6 @@
-#include "basics.cpp"
-//functions tested at: https://codeforces.com/group/3qadGzUdR4/contest/101706/problem/B
-
-//WARNING: all distance functions are not realizing sqrt operation
 //Suggestion: for line intersections check line_line_intersection and then use compute_line_intersection
+//Distance(point - segment): Project point and calculate distance
+//Segments Distance: brute distance (point - segment) for all border points
 
 point project_point_line(point c, point a, point b) {
 	ld r = dot(b - a,b - a);
@@ -27,19 +25,6 @@ point project_point_segment(point c, point a, point b) {
 	return a + (b - a)*r;
 }
 
-ld distance_point_line(point c, point a, point b) {
-	return c.dist2(project_point_line(c, a, b));
-}
-
-ld distance_point_ray(point c, point a, point b) {
-	return c.dist2(project_point_ray(c, a, b));
-}
-
-ld distance_point_segment(point c, point a, point b) {
-	return c.dist2(project_point_segment(c, a, b));
-}
-
-//not tested
 ld distance_point_plane(ld x, ld y, ld z,
 						ld a, ld b, ld c, ld d)
 {
@@ -135,40 +120,4 @@ bool ray_line_intersect(point a, point b, point c, point d){
 	if(!line_line_intersect(a, b, c, d)) return false;
 	if(ge(dot(inters - a, b - a), 0)) return true;
 	return false;
-}
-
-ld distance_segment_line(point a, point b, point c, point d){
-	if(segment_line_intersect(a, b, c, d)) return 0;
-	return min(distance_point_line(a, c, d), distance_point_line(b, c, d));
-}
-
-ld distance_segment_ray(point a, point b, point c, point d){
-	if(segment_ray_intersect(a, b, c, d)) return 0;
-	ld min1 = distance_point_segment(c, a, b);
-	ld min2 = min(distance_point_ray(a, c, d), distance_point_ray(b, c, d));
-	return min(min1, min2);
-}
-
-ld distance_segment_segment(point a, point b, point c, point d){
-	if(segment_segment_intersect(a, b, c, d)) return 0;
-	ld min1 = min(distance_point_segment(c, a, b), distance_point_segment(d, a, b));
-	ld min2 = min(distance_point_segment(a, c, d), distance_point_segment(b, c, d));
-	return min(min1, min2);
-}
-
-ld distance_ray_line(point a, point b, point c, point d){
-	if(ray_line_intersect(a, b, c, d)) return 0;
-	ld min1 = distance_point_line(a, c, d);
-	return min1;
-}
-
-ld distance_ray_ray(point a, point b, point c, point d){
-	if(ray_ray_intersect(a, b, c, d)) return 0;
-	ld min1 = min(distance_point_ray(c, a, b), distance_point_ray(a, c, d));
-	return min1;
-}
-
-ld distance_line_line(point a, point b, point c, point d){
-	if(line_line_intersect(a, b, c, d)) return 0;
-	return distance_point_line(a, c, d);
 }

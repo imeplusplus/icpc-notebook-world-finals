@@ -144,12 +144,12 @@ vector<vector<point>> voronoi(const vector<point>& points, const vector<point>& 
 	int n = delaunay.size();
 	vector<vector<point>> voronoi(n, vector<point>());
 	for(int i = 0; i < n; i++){
-			for(int d = 0; d < delaunay[i].size(); d++){
-					int j = delaunay[i][d], k = delaunay[i][(d + 1) % delaunay[i].size()];
-					circle c = circumcircle(points[i], points[j], points[k]);
-					voronoi[i].push_back(c.c);
-					voronoi[j].push_back(c.c);
-					voronoi[k].push_back(c.c);
-			}
+		for(int d = 0; d < delaunay[i].size(); d++){
+			int j = delaunay[i][d], k = delaunay[i][(d + 1) % delaunay[i].size()];
+			circle c = circumcircle(points[i], points[j], points[k]);
+			voronoi[i].push_back(c.c);
+			voronoi[j].push_back(c.c);
+			voronoi[k].push_back(c.c);
+		}
 	}
 }
