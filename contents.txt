@@ -14,7 +14,8 @@ data-structures/bit.cpp	Bit
 data-structures/bit2d.cpp	Bit 2D
 data-structures/centroid_decomposition.cpp	Centroid Decomposition
 data-structures/hld-lamarca.cpp	Heavy-Light Decomposition (Lamarca)
-data-structures/ita_lichao.cpp	Lichao Tree (ITA)
+data-structures/lichao.cpp	Lichao Tree (Cosenza)
+data-structures/lichao_lazy.cpp	Lichao Lazy (UFMG)
 data-structures/mergesort_tree.cpp	Merge Sort Tree
 data-structures/min_queue.cpp	Minimum Queue
 data-structures/ordered_set.cpp	Ordered Set
@@ -35,13 +36,13 @@ data-structures/union_find.cpp	Union Find
 dynamic-programming/convex_hull_trick_emaxx.cpp	Convex Hull Trick (emaxx)
 dynamic-programming/divide_and_conquer_optimization.cpp	Divide and Conquer Optimization
 dynamic-programming/knuth_optimization.cpp	Knuth Optimization
-dynamic-programming/lis.cpp	Longest Increasing Subsequence
 dynamic-programming/sos.cpp	SOS DP
 dynamic-programming/steiner_tree.cpp	Steiner tree
 
 [Graphs]
 graphs/2_sat_kosaraju.cpp	2-SAT Kosaraju
 graphs/bellman_ford.cpp	Shortest Path (Bellman-Ford)
+graphs/floyd_warshall.cpp	Floyd Warshall
 graphs/block_cut.cpp	Block Cut
 graphs/bridges_and_articulations.cpp	Articulation points and bridges
 graphs/dominator_tree.cpp	Dominator Tree
@@ -56,6 +57,7 @@ graphs/max_flow.cpp	Max Flow
 graphs/min_cost_max_flow.cpp	Min Cost Max Flow
 graphs/small_to_large.cpp	Small to Large
 graphs/stanford_stoer_wagner.cpp	Stoer Wagner (Stanford)
+graphs/stable_marriage.cpp	Stable Marriage  (Cosenza)
 
 [Strings]
 strings/aho_corasick.cpp	Aho-Corasick
@@ -97,20 +99,24 @@ math/stanford_simplex.cpp	Simplex (Stanford)
 geometry/misc.cpp	Miscellaneous
 geometry/basics.cpp	Basics (Point)
 geometry/radial_sort.cpp	Radial Sort
-geometry/circle.cpp	Circle
-geometry/closest_pair.cpp	Closest Pair of Points
-geometry/halfplane_intersection.cpp	Half Plane Intersection
 geometry/lines.cpp	Lines
-geometry/minkowski_sum.cpp	Minkowski Sum
-geometry/nearest_neighbour.cpp	Nearest Neighbour
+geometry/circle.cpp	Circle
 geometry/polygons.cpp	Polygons
+geometry/shamos_hoey.cpp	Shamos Hoey
+geometry/winding_Number.cpp	Winding Number
+geometry/cpa.cpp	Closes Point Approach
+geometry/rotating_calipers.cpp	Rotating Calipers
+geometry/closest_pair.cpp	Closest Pair of Points
+geometry/nearest_neighbour.cpp	Nearest Neighbour
+geometry/minkowski_sum.cpp	Minkowski Sum
+geometry/halfplane_intersection.cpp	Half Plane Intersection
 geometry/delaunay.cpp	Delaunay Triangulation
 
 [Miscellaneous]
 misc/bitset.cpp	Bitset
 misc/builtin.cpp	builtin
 misc/date.cpp	Date
-misc/ita_paren2polish.cpp	Parentesis to Poslish (ITA)
+misc/ita_paren2polish.cpp	Parentesis to Polish (ITA)
 misc/parallel_bin_search.cpp	Parallel Binary Search
 misc/python.py	Python
 misc/sqrt_decomposition.cpp	Sqrt Decomposition

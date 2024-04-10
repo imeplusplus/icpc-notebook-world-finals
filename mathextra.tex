@@ -1,6 +1,5 @@
 \section{Math Extra}
 \subsection{Combinatorial formulas}
-
  $\sum_{k=0}^{n}k^{2}=n(n+1)(2n+1)/6$\\
  $\sum_{k=0}^{n}k^{3}=n^{2}(n+1)^{2}/4$\\
  $\sum_{k=0}^{n}k^{4}=(6n^{5}+15n^{4}+10n^{3}-n)/30$\\
@@ -17,27 +16,29 @@
  $\sum_{k=1}^{n}k^{2}\tbinom{n}{k}=(n+n^{2})2^{n-2}$\\
  ${m+n \choose r}=\sum_{k=0}^{r}{m \choose k}{n \choose r-k}$\\
  ${n \choose k}=\prod_{i=1}^{k}\frac{n-k+i}{i}$\\
-
+\vspace{-\baselineskip}
 \subsection{Number theory identities}
 \textbf{Lucas' Theorem:} For non-negative integers $m$ and $n$ and a prime $p$,
-
+\vspace{-\baselineskip}
 $$\binom{m}{n}\equiv\prod_{i=0}^k\binom{m_i}{n_i}\pmod p,$$
 where
+\vspace{-\baselineskip}
 $$m=m_kp^k+m_{k-1}p^{k-1}+\cdots +m_1p+m_0$$
 is the base $p$ representation of $m$, and similarly for $n$.
 
+\vspace{-\baselineskip}
 \subsection{Stirling Numbers of the second kind}
 Number of ways to partition a set of $n$ numbers into $k$ non-empty subsets.
+\vspace{-\baselineskip}
 
 $${n \brace k}=\frac{1}{k!}\sum_{j=0}^{k}(-1)^{(k-j)}{k \choose j}j^n$$
 
 Recurrence relation:
-
+\vspace{-\baselineskip}
   $${0 \brace 0}=1$$
   $${n \brace 0}={0 \brace n}=1$$
   $${n+1 \brace k}=k{n \brace k}+{n \brace k-1}$$
-
-
+\vspace{-\baselineskip}
 \subsection{Numerical integration}
 RK4: to integrate $\dot{y} = f(t, y)$ with $y_0 = y(t_0)$, compute
 \begin{align*}

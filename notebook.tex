@@ -22,13 +22,13 @@
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                                    {-3.5ex \@plus -1ex \@minus -.2ex}%
                                    {2.3ex \@plus.2ex}%
-                                   {\normalfont\normalsize\bfseries}}
+                                   {\normalfont\normalsize\bfseries\color{black!100!black}}}
 \makeatother
 \makeatletter
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                                    {-3.25ex \@plus -1ex \@minus -.2ex}%
                                    {1.5ex \@plus .2ex}%
-                                   {\normalfont\small\bfseries}}
+                                   {\normalfont\small\bfseries\color{black!100!black}}}%
 \makeatother
 
 \lstdefinestyle{shared}{
@@ -36,14 +36,15 @@
     breaklines=true,
     xleftmargin=\parindent,
     showstringspaces=false,
-    basicstyle=\fontsize{6}{6}\ttfamily,
+    basicstyle=\fontsize{6.3}{6}\ttfamily,
+    xleftmargin=1mm,
 }
 \lstdefinestyle{cpp}{
     style=shared,
     language=C++,
     tabsize=2,
     keywordstyle=\bfseries\color{green!40!black},
-    commentstyle=\itshape\color{red!80!black},
+    commentstyle=\itshape\color{red!90!black},
     identifierstyle=\color{blue},
     stringstyle=\color{purple!40!black},
 }
@@ -69,18 +70,18 @@
 \lstset{escapechar=@}
 
 \pagestyle{fancy}
-\fancyhead[L]{12k Club (IME)}
+\fancyhead[L]{12k Club (Instituto Militar de Engenharia)}
 \fancyhead[R]{\thepage}
 \fancyfoot[C]{}
 
 \fancypagestyle{plain}
 {
-\fancyhead[L]{12k Club (IME)}
+\fancyhead[L]{12k Club (Instituto Militar de Engenharia)}
 \fancyhead[R]{\thepage}
 \fancyfoot[C]{}
 }
  
-\title{\vspace{-4ex}\Large{12k Club (IME) ACM-ICPC Team Notebook}}
+\title{\vspace{-4ex}\Large{12k Club (Instituto Militar de Engenharia) ACM-ICPC Team Notebook}}
 \author{}
 \date{}
 
