@@ -1,6 +1,3 @@
-#include "basics.cpp"
-#include "lines.cpp"
-
 //Monotone chain O(nlog(n))
 #define REMOVE_REDUNDANT
 #ifdef REMOVE_REDUNDANT
@@ -61,6 +58,14 @@ point compute_centroid(vector<point> &p) {
 	return c / scale;
 }
 
+bool is_ccw(vector<point> &p) {
+	type area = 0;
+	for(int i = 2; i < p.size(); i++) {
+			area += cross(p[i] - p[0], p[i - 1] - p[0]);
+	}
+	return area > 0;
+}
+
 bool point_in_triangle(point a, point b, point c, point cur){
 	ll s1 = abs(cross(b - a, c - a));
 	ll s2 = abs(cross(a - cur, b - cur)) + abs(cross(b - cur, c - cur)) + abs(cross(c - cur, a - cur));
@@ -96,63 +101,7 @@ bool point_in_convex_polygon(vector<point> &hull, point cur){
 	return point_in_triangle(hull[l], hull[l + 1], hull[0], cur);
 }
 
-//Shamos - Hoey for test polygon simple in O(nlog(n))
-inline bool adj(int a, int b, int n) {return (b == (a + 1)%n or a == (b + 1)%n);}
-
-struct edge{
-	point ini, fim;
-	edge(point ini = point(0,0), point fim = point(0,0)) : ini(ini), fim(fim) {}
-};
-
-//< here means the edge on the top will be at the begin
-bool operator < (const edge& a, const edge& b) {
-	if (a.ini == b.ini) return direction(a.ini, a.fim, b.fim) < 0;
-	if (a.ini.x < b.ini.x) return direction(a.ini, a.fim, b.ini) < 0;
-	return direction(a.ini, b.fim, b.ini) < 0;
-}
-
-bool is_simple_polygon(const vector<point> &pts){
-	vector <pair<point, pii>> eve;
-	vector <pair<edge, int>> edgs;
-	set <pair<edge, int>> sweep;
-	int n = (int)pts.size();
-	for(int i = 0; i < n; i++){
-		point l = min(pts[i], pts[(i + 1)%n]);
-		point r = max(pts[i], pts[(i + 1)%n]);
-		eve.pb({l, {0, i}});
-		eve.pb({r, {1, i}});
-		edgs.pb(make_pair(edge(l, r), i));
-	}
-	sort(eve.begin(), eve.end());
-	for(auto e : eve){
-		if(!e.nd.st){
-			auto cur = sweep.lower_bound(edgs[e.nd.nd]);
-			pair<edge, int> above, below;
-			if(cur != sweep.end()){
-				below = *cur;
-				if(!adj(below.nd, e.nd.nd, n) and segment_segment_intersect(pts[below.nd], pts[(below.nd + 1)%n], pts[e.nd.nd], pts[(e.nd.nd + 1)%n]))
-					return false;
-			}
-			if(cur != sweep.begin()){
-				above = *(--cur);
-				if(!adj(above.nd, e.nd.nd, n) and segment_segment_intersect(pts[above.nd], pts[(above.nd + 1)%n], pts[e.nd.nd], pts[(e.nd.nd + 1)%n]))
-					return false;
-			}
-			sweep.insert(edgs[e.nd.nd]);
-		}
-		else{
-			auto below = sweep.upper_bound(edgs[e.nd.nd]);
-			auto cur = below, above = --cur;
-			if(below != sweep.end() and above != sweep.begin()){
-				--above;
-				if(!adj(below->nd, above->nd, n) and segment_segment_intersect(pts[below->nd], pts[(below->nd + 1)%n], pts[above->nd], pts[(above->nd + 1)%n]))
-					return false;
-			}
-			sweep.erase(cur);
-		}
-	}
-	return true;
-}
+//Simple Polygons
 
 // this code assumes that there are no 3 colinear points
 int maximize_scalar_product(vector<point> &hull, point vec /*, int dir_flag*/) {
@@ -176,7 +125,7 @@ int maximize_scalar_product(vector<point> &hull, point vec /*, int dir_flag*/) {
 		}
 	} else {
 		if(hull[1] * vec > hull[ans] * vec) {
-			//hull[ans].dir(vec, hull[i]) == dir_flag
+			//hull[ans].dir(vec, hull[1]) == dir_flag
 			ans = 1;
 		}
 		for(int rep = 0; rep < 2; rep++) {

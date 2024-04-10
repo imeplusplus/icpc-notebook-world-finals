@@ -1,10 +1,5 @@
-#include "basics.cpp"
-#include "polygons.cpp"
-
 //ITA MINKOWSKI
-
 typedef vector<point> polygon;
-
 /*
  * Minkowski sum
 	 Distance between two polygons P and Q:
@@ -35,3 +30,28 @@ polygon minkowski(polygon & A, polygon & B) {
 	sort_lex_hull(P);
 	return P;
 }
+
+/*
+Computing the Minkowski sum of multiple polygons:
+the resulting polygon will have the number of sides equal to the number of vectors in all sequences for given polygons, if we count all parallel vectors as one.
+Now we can solve the problem in such a way: construct the sequences of vectors for the given polygons and divide these vectors into equivalence classes
+in such a way that vectors belong to the same class if and only if they are parallel.
+The answer to each query is equal to the number of equivalence classes such that at least one vector belonging to this class is contained in at least one sequence on the segment of polygons;
+this can be modeled as the query "count the number of distinct values on the given segment of the given array".
+*/
+//cmp from radial sort
+//build equivalence classes from here with resizing unique and giving id to edges
+struct edge{
+    point l, r;
+    edge(point _l = point(), point _r = point()) : l(_l), r(_r) {}
+
+    bool operator <(const edge& p) const{
+        point u = p.r, v = r;
+        return cmp(v - l, u - p.l);
+    }
+    //actually this operator is checking >= not ==
+    bool operator ==(const edge& p) const{
+        point u = p.r, v = r;
+        return cmp(v - l, u - p.l) == 0;
+    }
+};
