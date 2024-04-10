@@ -1,23 +1,18 @@
 // Finds a primitive root modulo p
 // To make it works for any value of p, we must add calculation of phi(p)
 // n is 1, 2, 4 or p^k or 2*p^k (p odd in both cases)
-ll root(ll p) {
-	ll n = p-1;
-	vector<ll> fact;
 
-	for (int i=2; i*i<=n; ++i) if (n % i == 0) {
-		fact.push_back (i);
-		while (n % i == 0) n /= i;
+//is n primitive root of p ?
+bool test(long long x, long long p) {
+	long long m = p - 1;
+	for(int i = 2; i * i <= m; ++i) if(!(m % i)) {
+		if(fexp(x, i, p) == 1) return false;
+		if(fexp(x, m / i, p) == 1) return false;
 	}
-
-	if (n > 1) fact.push_back (n);
-
-	for (int res=2; res<=p; ++res) {
-		bool ok = true;
-		for (size_t i=0; i<fact.size() && ok; ++i)
-			ok &= exp(res, (p-1) / fact[i], p) != 1;
-		if (ok)  return res;
-	}
-
+	return true;
+}
+//find the smallest primitive root for p
+int search(int p) {
+	for(int i = 2; i < p; i++) if(test(i, p)) return i;
 	return -1;
 }
