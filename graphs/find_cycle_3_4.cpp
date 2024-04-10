@@ -1,23 +1,3 @@
-#include <bits/stdc++.h>
-
-using lint = int64_t;
-
-constexpr int MOD = int(1e9) + 7;
-constexpr int INF = 0x3f3f3f3f;
-constexpr int NINF = 0xcfcfcfcf;
-constexpr lint LINF = 0x3f3f3f3f3f3f3f3f;
-
-#define endl '\n'
-
-const long double PI = acosl(-1.0);
-
-int cmp_double(double a, double b = 0, double eps = 1e-9) {
-	return a + eps > b ? b + eps > a ? 0 : 1 : -1;
-}
-
-using namespace std;
-
-#define P 1000000007
 #define N 330000
 
 int n, m;
@@ -57,7 +37,6 @@ inline bool cmp(const int &x, const int &y) {
 }
 
 int main() {
-	cin.tie(nullptr)->sync_with_stdio(false); 
 	cin >> n >> m;
 
 	int x, y;
@@ -84,17 +63,7 @@ int main() {
 			if(pos[y]>pos[x]) lk[x].push_back(y);
 		}
 	};
-
-	if(circle3()) {
-		cout << "3" << endl;
-		return 0;
-	};
-
-	if(circle4()) {
-		cout << "4" << endl;
-		return 0;
-	};
-
-	cout << "5" << endl;
+	
+	//Check circle3() then circle4()
 	return 0;
 }

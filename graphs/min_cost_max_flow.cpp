@@ -1,66 +1,121 @@
-// USE INF = 1e9!
-// w: weight or cost, c : capacity
-struct edge {int v, f, w, c; };
+template <class T = int>
+class MCMF {
+public:
+	struct Edge {
+		Edge(int a, T b, T c) : to(a), cap(b), cost(c) {}
+		int to;
+		T cap, cost;
+	};
 
-int n, flw_lmt=INF, src, snk, flw, cst, p[N], d[N], et[N];
-vector<edge> e;
-vector<int> g[N];
+	MCMF(int size) {
+		n = size;
+		edges.resize(n);
+		pot.assign(n, 0);
+		dist.resize(n);
+		visit.assign(n, false);
+	}
 
-void add_edge(int u, int v, int w, int c) {
-	int k = e.size();
-	g[u].push_back(k);
-	g[v].push_back(k+1);
-	e.push_back({ v, 0,  w, c });
-	e.push_back({ u, 0, -w, 0 });
-}
+	std::pair<T, T> mcmf(int src, int sink) {
+		std::pair<T, T> ans(0, 0);
+		if(!SPFA(src, sink)) return ans;
+		fixPot();
+		// can use dijkstra to speed up depending on the graph
+		while(SPFA(src, sink)) {
+			auto flow = augment(src, sink);
+			ans.first += flow.first;
+			ans.second += flow.first * flow.second;
+			fixPot();
+		}
+		return ans;
+	}
 
-void clear() {
-	flw_lmt = INF;
-	for(int i=0; i<=n; ++i) g[i].clear();
-	e.clear();
-}
+	void addEdge(int from, int to, T cap, T cost) {
+		edges[from].push_back(list.size());
+		list.push_back(Edge(to, cap, cost));
+		edges[to].push_back(list.size());
+		list.push_back(Edge(from, 0, -cost));
+	}
+private:
+	int n;
+	std::vector<std::vector<int>> edges;
+	std::vector<Edge> list;
+	std::vector<int> from;
+	std::vector<T> dist, pot;
+	std::vector<bool> visit;
 
-void min_cost_max_flow() {
-	flw = 0, cst = 0;
-	while (flw < flw_lmt) {
-		memset(et, 0, (n+1) * sizeof(int));
-		memset(d, 63, (n+1) * sizeof(int));
-		deque<int> q;
-		q.push_back(src), d[src] = 0;
-
-		while (!q.empty()) {
-			int u = q.front(); q.pop_front();
-			et[u] = 2;
-
-			for(int i : g[u]) {
-				edge &dir = e[i];
-				int v = dir.v;
-				if (dir.f < dir.c and d[u] + dir.w < d[v]) {
-					d[v] = d[u] + dir.w;
-					if (et[v] == 0) q.push_back(v);
-					else if (et[v] == 2) q.push_front(v);
-					et[v] = 1;
-					p[v] = i;
+	/*bool dij(int src, int sink) {
+		T INF = std::numeric_limits<T>::max();
+		dist.assign(n, INF);
+		from.assign(n, -1);
+		visit.assign(n, false);
+		dist[src] = 0;
+		for(int i = 0; i < n; i++) {
+			int best = -1;
+			for(int j = 0; j < n; j++) {
+				if(visit[j]) continue;
+				if(best == -1 || dist[best] > dist[j]) best = j;
+			}
+			if(dist[best] >= INF) break;
+			visit[best] = true;
+			for(auto e : edges[best]) {
+				auto ed = list[e];
+				if(ed.cap == 0) continue;
+				T toDist = dist[best] + ed.cost + pot[best] - pot[ed.to];
+				assert(toDist >= dist[best]);
+				if(toDist < dist[ed.to]) {
+					dist[ed.to] = toDist;
+					from[ed.to] = e;
 				}
 			}
 		}
+		return dist[sink] < INF;
+	}*/
 
-		if (d[snk] > INF) break;
-
-		int inc = flw_lmt - flw;
-		for (int u=snk; u != src; u = e[p[u]^1].v) {
-			edge &dir = e[p[u]];
-			inc = min(inc, dir.c - dir.f);
+	std::pair<T, T> augment(int src, int sink) {
+		std::pair<T, T> flow = {list[from[sink]].cap, 0};
+		for(int v = sink; v != src; v = list[from[v]^1].to) {
+			flow.first = std::min(flow.first, list[from[v]].cap);
+			flow.second += list[from[v]].cost;
 		}
-
-		for (int u=snk; u != src; u = e[p[u]^1].v) {
-			edge &dir = e[p[u]], &rev = e[p[u]^1];
-			dir.f += inc;
-			rev.f -= inc;
-			cst += inc * dir.w;
+		for(int v = sink; v != src; v = list[from[v]^1].to) {
+			list[from[v]].cap -= flow.first;
+			list[from[v]^1].cap += flow.first;
 		}
-
-		if (!inc) break;
-		flw += inc;
+		return flow;
 	}
-}
+
+	std::queue<int> q;
+	bool SPFA(int src, int sink) {
+		T INF = std::numeric_limits<T>::max();
+		dist.assign(n, INF);
+		from.assign(n, -1);
+		q.push(src);
+		dist[src] = 0;
+		while(!q.empty()) {
+			int on = q.front();
+			q.pop();
+			visit[on] = false;
+			for(auto e : edges[on]) {
+				auto ed = list[e];
+				if(ed.cap == 0) continue;
+				T toDist = dist[on] + ed.cost + pot[on] - pot[ed.to];
+				if(toDist < dist[ed.to]) {
+					dist[ed.to] = toDist;
+					from[ed.to] = e;
+					if(!visit[ed.to]) {
+						visit[ed.to] = true;
+						q.push(ed.to);
+					}
+				}
+			}
+		}
+		return dist[sink] < INF;
+	}
+
+	void fixPot() {
+		T INF = std::numeric_limits<T>::max();
+		for(int i = 0; i < n; i++) {
+			if(dist[i] < INF) pot[i] += dist[i];
+		}
+	}
+};
