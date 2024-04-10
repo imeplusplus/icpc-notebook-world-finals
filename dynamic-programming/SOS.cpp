@@ -4,6 +4,11 @@
 for(int i = 0; i < (1 << N); i++)
 	F[i] = A[i];
 for(int i = 0; i < N; i++)
+	//add to superset
 	for(int j = 0; j < (1 << N); j++)
 		if(j & (1 << i))
 			F[j] += F[j ^ (1 << i)];
+	//add to subset
+	for(int j = (1 << N) - 1; j >= 0; j--)
+		if(j & (1 << i))
+			F[j ^ (1 << i)] += F[j];
