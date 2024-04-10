@@ -18,10 +18,10 @@ data-structures/ita_lichao.cpp	Lichao Tree (ITA)
 data-structures/mergesort_tree.cpp	Merge Sort Tree
 data-structures/min_queue.cpp	Minimum Queue
 data-structures/ordered_set.cpp	Ordered Set
-data-structures/seg_tree_dynamic_lazy.cpp	Dynamic Segment Tree (Lazy Update)
+data-structures/seg_tree_dynamic_lazy.cpp	Dynamic Segment Tree (Lazy)
 data-structures/seg_tree_iterative.cpp	Iterative Segment Tree
-data-structures/seg_tree_mod.cpp	Mod Segment Tree
 data-structures/seg_tree_persistent.cpp	Persistent Segment Tree
+data-structures/seg_tree_mod.cpp	Mod Segment Tree
 data-structures/seg_tree2d.cpp	Segment Tree 2D
 data-structures/set_of_intervals.cpp	Set Of Intervals
 data-structures/sparse.cpp	Sparse Table
@@ -44,24 +44,21 @@ graphs/2_sat_kosaraju.cpp	2-SAT Kosaraju
 graphs/bellman_ford.cpp	Shortest Path (Bellman-Ford)
 graphs/block_cut.cpp	Block Cut
 graphs/bridges_and_articulations.cpp	Articulation points and bridges
-graphs/dinic.cpp	Max Flow
 graphs/dominator_tree.cpp	Dominator Tree
 graphs/erdos_gallai.cpp	Erdos Gallai
 graphs/eulerian_path.cpp	Eulerian Path
 graphs/fast_kuhn.cpp	Fast Kuhn
 graphs/find_cycle_3_4.cpp	Find Cycle of size 3 and 4
-graphs/floyd_warshall.cpp	Floyd Warshall
 graphs/hungarian_navarro.cpp	Hungarian Navarro
 graphs/kosaraju.cpp	Strongly Connected Components
-graphs/max_weight_lca.cpp	Max Weight on Path (LCA)
+graphs/lca_max_weight.cpp	LCA (Max Weight On Path)
+graphs/max_flow.cpp	Max Flow
 graphs/min_cost_max_flow.cpp	Min Cost Max Flow
-graphs/spfa.cpp	Shortest Path (SPFA)
 graphs/small_to_large.cpp	Small to Large
 graphs/stanford_stoer_wagner.cpp	Stoer Wagner (Stanford)
 
 [Strings]
 strings/aho_corasick.cpp	Aho-Corasick
-strings/aho_emaxx.cpp	Aho-Corasick (emaxx)
 strings/booths_algorithm.cpp	Booths Algorithm
 strings/kmp_automaton.cpp	Knuth-Morris-Pratt (Automaton)
 strings/kmp.cpp	Knuth-Morris-Pratt
@@ -81,18 +78,16 @@ math/discrete_log.cpp	Discrete Log (Baby-step Giant-step)
 math/euler_phi.cpp	Euler Phi
 math/extended_euclid.cpp	Extended Euclidean and Chinese Remainder
 math/fft_tourist.cpp	Fast Fourier Transform(Tourist)
-math/fft.cpp	Fast Fourier Transform
 math/fwht.cpp	Fast Walsh-Hadamard Transform
 math/gauss_elim_xor.cpp	Gaussian Elimination (xor)
 math/gauss_elim.cpp	Gaussian Elimination (double)
+math/ternary_search.cpp	Ternary Search
 math/gss.cpp	Golden Section Search (Ternary Search)
 math/josephus.cpp	Josephus
-math/matrix.cpp	Matrix Exponentiation
 math/mobius_inversion.cpp	Mobius Inversion
 math/mobius.cpp	Mobius Function
 math/ntt.cpp	Number Theoretic Transform
 math/pollard_rho.cpp	Pollard-Rho
-math/prime_factors.cpp	Prime Factors
 math/primitive_root.cpp	Primitive Root
 math/sieve.cpp	Sieve of Eratosthenes
 math/simpson_rule.cpp	Simpson Rule
@@ -109,7 +104,6 @@ geometry/lines.cpp	Lines
 geometry/minkowski_sum.cpp	Minkowski Sum
 geometry/nearest_neighbour.cpp	Nearest Neighbour
 geometry/polygons.cpp	Polygons
-geometry/ternary_search.cpp	Ternary Search
 geometry/delaunay.cpp	Delaunay Triangulation
 
 [Miscellaneous]
@@ -117,9 +111,7 @@ misc/bitset.cpp	Bitset
 misc/builtin.cpp	builtin
 misc/date.cpp	Date
 misc/ita_paren2polish.cpp	Parentesis to Poslish (ITA)
-misc/modular_int.cpp	Modular Int (Struct)
 misc/parallel_bin_search.cpp	Parallel Binary Search
-misc/prime_numbers.txt	prime numbers
 misc/python.py	Python
 misc/sqrt_decomposition.cpp	Sqrt Decomposition
 misc/stanford_latlong.cpp	Latitude Longitude (Stanford)
