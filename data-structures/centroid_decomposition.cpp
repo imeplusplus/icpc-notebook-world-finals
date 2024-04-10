@@ -1,5 +1,4 @@
 // Centroid decomposition
-
 vector<int> adj[N];
 int forb[N], sz[N], par[N];
 int n, m;
@@ -31,7 +30,6 @@ void getdist(int u, int p, int cen) {
 		}
 	}
 }
-
 
 void decomp(int u, int p) {
 	dfs(u, -1);

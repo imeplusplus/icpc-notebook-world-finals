@@ -1,15 +1,5 @@
-#include <cstdio>
-#include <vector>
-#define INF 0x3f3f3f3f3f3f3f3f
-#define MAXN 1009
-using namespace std;
-
+//LiChao Segment Tree
 typedef long long ll;
-
-/*
- * LiChao Segment Tree
- */
-
 class LiChao {
 	vector<ll> m, b;
 	int n, sz; ll *x;
@@ -41,31 +31,3 @@ public:
 		return ans;
 	}
 };
-
-/*
- * UVa 12524
- */
-
-ll w[MAXN], x[MAXN], A[MAXN], B[MAXN], dp[MAXN][MAXN];
-
-int main(){
-	int N, K;
-	while(scanf("%d %d", &N, &K)!=EOF) {
-		for(int i=0; i<N; i++){
-			scanf("%lld %lld", x+i, w+i);
-			A[i] = w[i] + (i>0 ? A[i-1] : 0);
-			B[i] = w[i]*x[i] + (i>0 ? B[i-1] : 0);
-			dp[i][1] = x[i]*A[i] - B[i];
-		}
-		for(int k=2; k<=K; k++){
-			dp[0][k] = 0;
-						LiChao lc(x, x+N);
-			for(int i=1; i<N; i++){
-				lc.insert_line(A[i-1], -dp[i-1][k-1]-B[i-1]);
-				dp[i][k] = x[i]*A[i] - B[i] - lc.query(i);
-			}
-		}
-		printf("%lld\n", dp[N-1][K]);
-	}
-	return 0;
-}

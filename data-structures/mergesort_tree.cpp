@@ -1,10 +1,9 @@
 // Mergesort Tree - Time <O(nlogn), O(log^2n)> - Memory O(nlogn)
 // Mergesort Tree is a segment tree that stores the sorted subarray
 // on each node.
-vi st[4*N];
-
+vector<int> st[4*N];
 void build(int p, int l, int r) {
-	if (l == r) { st[p].pb(s[l]); return; }
+	if (l == r) { st[p].push_back(s[l]); return; }
 	build(2*p, l, (l+r)/2);
 	build(2*p+1, (l+r)/2+1, r);
 	st[p].resize(r-l+1);

@@ -2,7 +2,6 @@
 // op1 (l, r) -> sum a[i], i = { l .. r }
 // op2 (l, r, x) -> a[i] = a[i] mod x, i = { l .. r }
 // op3 (idx, x) -> a[idx] = x;
-
 const int N = 1e5 + 5;
 
 struct segTreeNode { ll sum, mx, mn, lz = -1; };

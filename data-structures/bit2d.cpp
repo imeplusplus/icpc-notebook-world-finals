@@ -1,5 +1,4 @@
 // Thank you for the code tfg!
-
 // O(N(logN)^2)
 template<class T = int>
 struct Bit2D{

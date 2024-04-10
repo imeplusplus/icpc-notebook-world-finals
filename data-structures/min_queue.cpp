@@ -1,6 +1,5 @@
 // O(1) complexity for all operations, except for clear,
 // which could be done by creating another deque and using swap
-
 struct MinQueue {
 	int plus = 0;
 	int sz = 0;
@@ -26,4 +25,3 @@ struct MinQueue {
 		if (!dq.front().second) dq.pop_front();
 	}
 };
-
