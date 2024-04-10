@@ -1,163 +1,75 @@
-// copy fexp from basics.cpp
-
-const int MOD = 998244353;
-const int me = 15;
-const int ms = 1 << me;
-
-#define add(x, y) x+y>=MOD?x+y-MOD:x+y
-
-const int gen = 3; // use search() from PrimitiveRoot.cpp if MOD isn't 998244353
-int bits[ms], root[ms];
-
-void initFFT() {
-	root[1] = 1;
-	for(int len = 2; len < ms; len += len) {
-		int z = (int) fexp(gen, (MOD - 1) / len / 2);
-		for(int i = len / 2; i < len; i++) {
-			root[2 * i] = root[i];
-			root[2 * i + 1] = (int)((long long) root[i] * z % MOD);
-		}
-	}
-}
-
-void pre(int n) {
-	int LOG = 0;
-	while(1 << (LOG + 1) < n) {
-		LOG++;
-	}
-	for(int i = 1; i < n; i++) {
-		bits[i] = (bits[i >> 1] >> 1) | ((i & 1) << LOG);
-	}
-}
-
-std::vector<int> fft(std::vector<int> a, bool inv = false) {
-	int n = (int) a.size();
-	pre(n);
-	if(inv) {
-		std::reverse(a.begin() + 1, a.end());
-	}
-	for(int i = 0; i < n; i++) {
-		int to = bits[i];
-		if(i < to) { std::swap(a[i], a[to]); }
-	}
-	for(int len = 1; len < n; len *= 2) {
-		for(int i = 0; i < n; i += len * 2) {
-			for(int j = 0; j < len; j++) {
-				int u = a[i + j], v = (int)((long long) a[i + j + len] * root[len + j] % MOD);
-				a[i + j] = add(u, v);
-				a[i + j + len] = add(u, MOD - v);
-			}
-		}
-	}
-	if(inv) {
-		long long rev = fexp(n, MOD-2, MOD);
-		for(int i = 0; i < n; i++)
-			a[i] = (int)(a[i] * rev % MOD);
-	}
-	return a;
-}
-
-std::vector<int> shift(const std::vector<int> &a, int s) {
-	int n = std::max(0, s + (int) a.size());
-	std::vector<int> b(n, 0);
-	for(int i = std::max(-s, 0); i < (int) a.size(); i++) {
-		b[i + s] = a[i];
-	}
-	return b;
-}
-
-std::vector<int> cut(const std::vector<int> &a, int n) {
-	std::vector<int> b(n, 0);
-	for(int i = 0; i < (int) a.size() && i < n; i++) {
-		b[i] = a[i];
-	}
-	return b;
-}
-
-std::vector<int> operator +(std::vector<int> a, const std::vector<int> &b) {
-	int sz = (int) std::max(a.size(), b.size());
-	a.resize(sz, 0);
-	for(int i = 0; i < (int) b.size(); i++) {
-		a[i] = add(a[i], b[i]);
-	}
-	return a;
-}
-
-std::vector<int> operator -(std::vector<int> a, const std::vector<int> &b) {
-	int sz = (int) std::max(a.size(), b.size());
-	a.resize(sz, 0);
-	for(int i = 0; i < (int) b.size(); i++) {
-		a[i] = add(a[i], MOD - b[i]);
-	}
-	return a;
-}
-
-std::vector<int> operator *(std::vector<int> a, std::vector<int> b) {
-	while(!a.empty() && a.back() == 0) a.pop_back();
-	while(!b.empty() && b.back() == 0) b.pop_back();
-	if(a.empty() || b.empty()) return std::vector<int>(0, 0);
-	int n = 1;
-	while(n-1 < (int) a.size() + (int) b.size() - 2) n += n;
-	a.resize(n, 0);
-	b.resize(n, 0);
-	a = fft(a, false);
-	b = fft(b, false);
-	for(int i = 0; i < n; i++) {
-		a[i] = (int) ((long long) a[i] * b[i] % MOD); 
-	}
-	return fft(a, true);
-}
-
-std::vector<int> inverse(const std::vector<int> &a, int k) {
-	assert(!a.empty() && a[0] != 0);
-	if(k == 0) {
-		return std::vector<int>(1, (int) fexp(a[0], MOD - 2));
-	} else {
-		int n = 1 << k;
-		auto c = inverse(a, k-1);
-		return cut(c * cut(std::vector<int>(1, 2) - cut(a, n) * c, n), n);
-	}
-}
-
-std::vector<int> operator /(std::vector<int> a, std::vector<int> b) {
-	// NEED TO TEST!
-	while(!a.empty() && a.back() == 0) a.pop_back();
-	while(!b.empty() && b.back() == 0) b.pop_back();
-	assert(!b.empty());
-	if(a.size() < b.size()) return std::vector<int>(1, 0);
-	std::reverse(a.begin(), a.end());
-	std::reverse(b.begin(), b.end());
-	int n = (int) a.size() - (int) b.size() + 1;
-	int k = 0;
-	while((1 << k) - 1 < n) k++;
-	a = cut(a * inverse(b, k), (int) a.size() - (int) b.size() + 1);
-	std::reverse(a.begin(), a.end());
-	return a;
-}
-
-std::vector<int> log(const std::vector<int> &a, int k) {
-	assert(!a.empty() && a[0] != 0);
-	int n = 1 << k;
-	std::vector<int> b(n, 0);
-	for(int i = 0; i+1 < (int) a.size() && i < n; i++) {
-		b[i] = (int)((i + 1LL) * a[i+1] % MOD);
-	}
-	b = cut(b * inverse(a, k), n);
-	assert((int) b.size() == n);
-	for(int i = n - 1; i > 0; i--) {
-		b[i] = (int) (b[i-1] * fexp(i, MOD - 2) % MOD);
-	}
-	b[0] = 0;
-	return b;
-}
-
-std::vector<int> exp(const std::vector<int> &a, int k) {
-	assert(!a.empty() && a[0] == 0);
-	if(k == 0) {
-		return std::vector<int>(1, 1);
-	} else {
-		auto b = exp(a, k-1);
-		int n = 1 << k;
-		return cut(b * cut(std::vector<int>(1, 1) + cut(a, n) - log(b, k), n), n);
-	}
+namespace ntt {
+    long long w[N], k, nrev, fact[N], ifact[N];
+    void f(int n) {
+        fact[0] = 1;
+        for(int i = 1; i <= n; i++) {
+            fact[i] = (fact[i - 1] * i) % mod;
+        }
+        ifact[n] = binexp(fact[n], mod - 2);
+        for(int i = n - 1; i >= 0; i--) {
+            ifact[i] = (ifact[i + 1] * (i + 1)) % mod;
+        }
+    }
+    void init(int n, int root) {
+        w[0] = 1;
+        k = binexp(root, (mod - 1) / n);
+        nrev = binexp(n, mod - 2);
+        for(int i = 1; i <= n; i++) {
+            w[i] = (w[i - 1] * k) % mod;
+        }
+    }
+    inline void ntt(vector<long long> &a, int n, bool inv = false) {
+        a.resize(n);
+        for(int i = 0, j = 0; i < n; i++) {
+            if(i > j) swap(a[i], a[j]);
+            for(int l = n / 2; (j ^= l) < l; l >>= 1);
+        }
+        for(int i = 2; i <= n; i <<= 1) {
+            for(int j = 0; j < n; j += i) {
+                for(int l = 0; l < i / 2; l++) {
+                    int x = j + l, y = j + l + (i / 2), z = (n / i) * l;
+                    long long tmp = (a[y] * w[(inv ? (n - z) : z)]) % mod;
+                    a[y] = (a[x] - tmp + mod) % mod;
+                    a[x] = (a[j + l] + tmp) % mod;
+                }
+            }
+        }
+        if(inv) {
+            for(int i = 0; i < n; i++) {
+                a[i] = (a[i] * nrev) % mod;
+            }
+        }
+    }
+		 // use search() from PrimitiveRoot.cpp if MOD isn't 998244353
+    vector<long long> multiply(vector<long long>& a, vector<long long>& b, int root = 3) { 
+        int n = a.size() + b.size() - 1;
+        while(n & (n - 1)) n++;
+        a.resize(n);
+        b.resize(n);
+        init(n, root);
+        ntt(a, n);
+        ntt(b, n);
+        vector<long long> ans(n);
+        for(int i = 0; i < n; i++) {
+            ans[i] = (a[i] * b[i]) % mod;
+        }
+        ntt(ans, n, true);
+        return ans;
+    }
+    vector<long long> poly_shift(vector<long long>& a, int shift) {
+        int n = a.size() - 1;
+        f(n);
+        vector<long long> x(n + 1), y(n + 1);
+        long long cur = 1;
+        for(int i = 0; i <= n; i++) {
+            x[i] = cur * ifact[i] % mod;
+            cur = (cur * shift) % mod;
+            y[i] = a[n - i] * fact[n - i] % mod;
+        }
+        vector<long long> tmp = multiply(x, y), res(n + 1);
+        for(int i = 0; i <= n; i++) {
+            res[i] = tmp[n - i] * ifact[i] % mod;
+        }
+        return res;
+    }
 }
