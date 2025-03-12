@@ -6,8 +6,7 @@ struct Point{
 	Point ccw(){ return Point(-y, x); }
 	ll operator%(Point p){ return x*p.y - y*p.x; }
 	ll operator*(Point p){ return x*p.x + y*p.y; }
-	bool operator<(Point p) const { return x == p.x ? y < p.y : x < p.x; }
-};
+	bool operator<(Point p) const { return x == p.x ? y < p.y : x < p.x; }};
 
 pair<vector<Point>, vector<Point>> ch(Point *v){
 	vector<Point> hull, vecs;

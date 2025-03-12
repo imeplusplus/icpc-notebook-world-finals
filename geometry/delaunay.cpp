@@ -19,7 +19,7 @@ The definition of the Voronoi diagram immediately shows signs of applications.
 
 */
 
-bool ccw(point a, point b, point c){ return area_2(a, b, c) > 0; }
+bool ccw(point a, point b, point c){return area_2(a, b, c) > 0;}
 
 typedef struct QuadEdge* Q;
 struct QuadEdge {

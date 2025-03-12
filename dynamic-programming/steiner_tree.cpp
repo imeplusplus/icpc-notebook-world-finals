@@ -1,5 +1,4 @@
 // Steiner-Tree O(2^t*n^2 + n*3^t + APSP)
-
 // N - number of nodes
 // T - number of terminals
 // dist[N][N] - Adjacency matrix

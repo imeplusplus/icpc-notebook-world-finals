@@ -1,7 +1,5 @@
-//
 //  FFT made by tourist. It if faster and more supportive, although it requires more lines of code.
 //  Also, it allows operations with MOD, which is usually an issue in FFT problems.
-//
 namespace fft {
 	typedef double dbl;
 

@@ -1,6 +1,3 @@
-#include "basics.cpp"
-#include "lines.cpp"
-
 struct circle {
 	point c;
 	ld r;
@@ -106,7 +103,6 @@ vector<point> circle_circle_intersection(point a, point b, ld r, ld R) {
 }
 
 //GREAT CIRCLE
-
 double gcTheta(double pLat, double pLong, double qLat, double qLong) {
 	pLat *= acos(-1.0) / 180.0; pLong *= acos(-1.0) / 180.0; // convert degree to radian
 	qLat *= acos(-1.0) / 180.0; qLong *= acos(-1.0) / 180.0;
