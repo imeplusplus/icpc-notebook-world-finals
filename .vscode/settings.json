@@ -1,0 +1,7 @@
+{
+    "editor.tabSize": 2,
+    "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": true,
+    "editor.autoIndent": "full"
+}

@@ -15,7 +15,6 @@ data-structures/bit2d.cpp	Bit 2D
 data-structures/centroid_decomposition.cpp	Centroid Decomposition
 data-structures/hld-lamarca.cpp	Heavy-Light Decomposition (Lamarca)
 data-structures/lichao.cpp	Lichao Tree (Cosenza)
-data-structures/lichao_lazy.cpp	Lichao Lazy (UFMG)
 data-structures/mergesort_tree.cpp	Merge Sort Tree
 data-structures/min_queue.cpp	Minimum Queue
 data-structures/ordered_set.cpp	Ordered Set
@@ -62,6 +61,7 @@ graphs/stable_marriage.cpp	Stable Marriage  (Cosenza)
 [Strings]
 strings/aho_corasick.cpp	Aho-Corasick
 strings/booths_algorithm.cpp	Booths Algorithm
+strings/eertree.cpp	Eertree
 strings/kmp_automaton.cpp	Knuth-Morris-Pratt (Automaton)
 strings/kmp.cpp	Knuth-Morris-Pratt
 strings/manacher.cpp	Manacher
@@ -86,6 +86,7 @@ math/gauss_elim.cpp	Gaussian Elimination (double)
 math/ternary_search.cpp	Ternary Search
 math/gss.cpp	Golden Section Search (Ternary Search)
 math/josephus.cpp	Josephus
+math/lagrange.cpp	Lagrange Interpolation
 math/mobius_inversion.cpp	Mobius Inversion
 math/mobius.cpp	Mobius Function
 math/ntt.cpp	Number Theoretic Transform

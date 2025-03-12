@@ -27,12 +27,19 @@ $$m=m_kp^k+m_{k-1}p^{k-1}+\cdots +m_1p+m_0$$
 is the base $p$ representation of $m$, and similarly for $n$.
 
 \vspace{-\baselineskip}
+\subsection{Stirling Numbers of the first kind}
+$|S(a, b)|$ is the number of permutations of $a$ elements with $b$ cycles.\\
+$S(a, b)$\ = the coefficient of ${{x}^{b}}$ in: $x\cdot(x - 1)\cdot(x - 2)\cdot...\cdot(x - a + 1)$
+
+Recurrence relation:
+$s(n + 1, k) = s(n, k - 1) - n \cdot s(n, k)$
+
+\vspace{-\baselineskip}
 \subsection{Stirling Numbers of the second kind}
 Number of ways to partition a set of $n$ numbers into $k$ non-empty subsets.
 \vspace{-\baselineskip}
 
 $${n \brace k}=\frac{1}{k!}\sum_{j=0}^{k}(-1)^{(k-j)}{k \choose j}j^n$$
-
 Recurrence relation:
 \vspace{-\baselineskip}
   $${0 \brace 0}=1$$
